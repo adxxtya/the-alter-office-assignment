@@ -1,0 +1,36 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
+  directUrl = env("DIRECT_URL")
+}
+
+model User {
+  id       String @id @default(uuid())
+  email    String @unique
+  name     String
+  googleId String
+}
+
+model ShortUrl {
+  id        Int      @id @default(autoincrement())
+  longUrl   String
+  shortUrl  String
+  alias     String   @unique
+  topic     String?
+  createdAt DateTime @default(now())
+}
+
+model UrlAnalytics {
+  id        String   @id @default(uuid())
+  alias     String
+  timestamp DateTime @default(now())
+  osName    String
+  device    String
+  userAgent String
+  ipAddress String
+  geoData   String
+}
