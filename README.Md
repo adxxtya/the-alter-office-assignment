@@ -1,5 +1,9 @@
-## [**Live Version**](https://the-alter-office-assignment.onrender.com/health)
 
+# [**Live Version**](https://the-alter-office-assignment.onrender.com/health)
+
+## For detailed API documentation, check out the [**API Docs**](https://the-alter-office-assignment.onrender.com/docs).
+
+This will make it easy for users to access both the live version of your app and the API documentation. Let me know if you'd like any further changes!
 # Custom URL Shortener API
 
 This project is a scalable and feature-rich Custom URL Shortener API designed to simplify the sharing of long URLs, track detailed analytics, and ensure security through Google Sign-In authentication. The API supports advanced features such as rate limiting, custom aliases, topic-based URL grouping, and more.
