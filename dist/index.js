@@ -8,6 +8,7 @@ const express_1 = __importDefault(require("express"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const routes_1 = __importDefault(require("./routes"));
 const express_rate_limit_1 = __importDefault(require("express-rate-limit"));
+const swagger_1 = require("./swagger");
 dotenv_1.default.config();
 const limiter = (0, express_rate_limit_1.default)({
     windowMs: 15 * 60 * 1000,
@@ -16,9 +17,11 @@ const limiter = (0, express_rate_limit_1.default)({
     headers: true,
 });
 exports.app = (0, express_1.default)();
-exports.app.use(express_1.default.json());
-exports.app.use(routes_1.default);
-exports.app.use(limiter);
-exports.app.listen(process.env.PORT || 3000, () => {
-    console.log(`Server running on port ${process.env.PORT || 3000}`);
+exports.app
+    .use(express_1.default.json())
+    .use(routes_1.default)
+    .use(limiter)
+    .listen(process.env.PORT || 3000, () => {
+    console.log(`Listening at http://localhost:${process.env.PORT || 3000}`);
+    (0, swagger_1.swaggerDocs)(exports.app, process.env.PORT || 3000);
 });

@@ -20,6 +20,30 @@ const urlLimiter = (0, express_rate_limit_1.default)({
     max: 10,
     message: { error: "Rate limit exceeded. Try again in a minute." },
 });
+/**
+ * @openapi
+ * '/api/shorten':
+ *  get:
+ *     tags:
+ *     - Employee
+ *     summary: Get all employee
+ *     responses:
+ *       200:
+ *         description: Success
+ *         content:
+ *          application/json:
+ *            schema:
+ *              type: array
+ *              items:
+ *                type: object
+ *                properties:
+ *                  id:
+ *                    type: number
+ *                  name:
+ *                    type: string
+ *       400:
+ *         description: Bad request
+ */
 router.post("/api/shorten", urlLimiter, shortUrl_controller_1.createShortUrl);
 router.get("/api/shorten/:alias", shortUrl_controller_1.redirectShortUrl);
 router.get("/api/analytics/overall", analytics_controller_1.getOverallAnalytics);

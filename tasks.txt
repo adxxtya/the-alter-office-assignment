@@ -54,15 +54,15 @@
 
 7. Testing & Error Handling
 
-    [] Write unit tests for individual components (models, services).
-    [] Write integration tests for API endpoints.
-    [] Implement robust error handling and return appropriate error responses.
+    [*] Write unit tests for individual components (models, services).
+    [*] Write integration tests for API endpoints.
+    [*] Implement robust error handling and return appropriate error responses.
 
 8. Deployment & Documentation
 
     [] Create a Dockerfile to containerize the application.
     [] Deploy the application to a cloud platform (e.g., Heroku, AWS, Google Cloud).
-    [] Generate API documentation using Swagger or a similar tool.
+    [*] Generate API documentation using Swagger or a similar tool.
     [] Write a comprehensive README file.
 
 9. Refinement & Iteration
