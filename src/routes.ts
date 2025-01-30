@@ -1,5 +1,4 @@
 import express from "express";
-import { registerUser, loginUser } from "./controllers/auth.controller";
 import {
   createShortUrl,
   redirectShortUrl,
@@ -9,6 +8,7 @@ import {
   getTopicAnalytics,
   getOverallAnalytics,
 } from "./controllers/analytics.controller";
+import rateLimit from "express-rate-limit";
 
 const router = express.Router();
 
@@ -20,12 +20,15 @@ router.get("/health", (req, res) => {
   });
 });
 
-router.post("/api/register", registerUser);
-router.post("/api/login", loginUser);
-router.post("/api/shorten", createShortUrl); // done
-router.get("/api/shorten/:alias", redirectShortUrl); // done
+const urlLimiter = rateLimit({
+  windowMs: 60 * 1000,
+  max: 10,
+  message: { error: "Rate limit exceeded. Try again in a minute." },
+});
+router.post("/api/shorten", urlLimiter, createShortUrl);
+router.get("/api/shorten/:alias", redirectShortUrl);
+router.get("/api/analytics/overall", getOverallAnalytics);
 router.get("/api/analytics/:alias", getUrlAnalytics);
 router.get("/api/analytics/topic/:topic", getTopicAnalytics);
-router.get("/api/analytics/overall", getOverallAnalytics);
 
 export default router;
